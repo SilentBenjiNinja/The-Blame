@@ -10,7 +10,7 @@ public class roundBasedGame : MonoBehaviour {
 
 	void Start () {
         roundTimeElapsed = 0;
-        playersArray = GameObject.FindGameObjectsWithTag("player");
+        playersArray = GameObject.FindGameObjectsWithTag("Player");
     }
 	
 	void Update () {
