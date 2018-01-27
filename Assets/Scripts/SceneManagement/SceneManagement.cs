@@ -17,6 +17,10 @@ public class SceneManagement : MonoBehaviour {
 
 		Scene jamesScene = SceneManager.GetSceneByName ("James_Scene");
 		loadingScenes.Add (jamesScene);
+		Scene benjiScene = SceneManager.GetSceneByName ("Benji_SceneScene");
+		loadingScenes.Add (benjiScene);
+		Scene bastiScene = SceneManager.GetSceneByName ("Basti_Scene");
+		loadingScenes.Add (bastiScene);
 	}
 
 	private bool[] RemoveCamDLight(GameObject gameObject, bool[] found){
