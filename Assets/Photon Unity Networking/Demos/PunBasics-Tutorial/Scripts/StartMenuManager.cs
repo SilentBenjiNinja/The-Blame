@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuManager : MonoBehaviour {
 
-    private Button hostGame;
-    private Button joinGame;
-    private Button howToPlay;
-    private Button backButton;
-    private Button endGame;
+    private GameObject startMenu;
+    private GameObject howToPlay;
+    private GameObject nameInput;
 
     //private Image startMenu;
     private Image gameTitle;
@@ -18,16 +16,11 @@ public class StartMenuManager : MonoBehaviour {
 
     private void Start()
     {
-        howToPlayBackground = GameObject.Find("HowToPlayBackground").GetComponent<Image>();
-        //startMenu = GameObject.Find("StartMenu").GetComponent<Image>();
-        gameTitle = GameObject.Find("GameTitle").GetComponent<Image>();
-        hostGame = GameObject.Find("HostGame").GetComponent<Button>();
-        joinGame = GameObject.Find("JoinGame").GetComponent<Button>();
-        howToPlay = GameObject.Find("HowToPlay").GetComponent<Button>();
-        backButton = GameObject.Find("Back").GetComponent<Button>();
-        //endGame = GameObject.Find("ExitGame").GetComponent<Button>();
-        backButton.enabled = false;
-        howToPlayBackground.enabled = false;
+        startMenu = GameObject.Find("StartMenu");
+        howToPlay = GameObject.Find("HowToPlayBackground");
+        nameInput = GameObject.Find("NameInput");
+        howToPlay.SetActive(false);
+        nameInput.SetActive(false);
     }
 
     public void ExitGame()
@@ -37,11 +30,12 @@ public class StartMenuManager : MonoBehaviour {
 
     public void GoBack()
     {
-        //if(hostGame.enabled == false)
-        //{
-        //    ActivateStartmenu();
-        //}
 
+        if (howToPlay.activeSelf)
+        {
+            howToPlay.SetActive(false);
+            ActivateStartmenu();
+        }
         
 
     }
@@ -49,19 +43,17 @@ public class StartMenuManager : MonoBehaviour {
     private void ActivateStartmenu()
     {
 
-        howToPlay.enabled = false;
+        startMenu.SetActive(true);
     }
 
     private void DectivateStartmenu()
     {
-        hostGame.enabled = false;
-        joinGame.enabled = false;
-        
+        startMenu.SetActive(false);
     }
 
     public void OpenHowToPlay()
     {
-        gameTitle.enabled = false;
-        howToPlayBackground.enabled = true;
+        DectivateStartmenu();
+        howToPlay.SetActive(true);
     }
 }
