@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour {
+
+    const string VERSION = "v0.0.1";
+
     public string roomName = "Room";
     public string playerPrefabName = "prefabPlayer";
     public Transform spawnPoint;
 
     void Start()
     {
-        
+        PhotonNetwork.ConnectUsingSettings(VERSION);
     }
 
     void OnJoinedLobby()
@@ -20,6 +23,7 @@ public class NetworkManager : MonoBehaviour {
 
     void OnJoinedRoom()
     {
+        Debug.Log("Joined room");
         PhotonNetwork.Instantiate(
             playerPrefabName,
             spawnPoint.position,
