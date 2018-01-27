@@ -11,8 +11,8 @@ public class SceneManagement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//SceneManager.LoadScene ("Basti_Scene", LoadSceneMode.Additive);
-		//SceneManager.LoadScene ("Benji_Scene", LoadSceneMode.Additive);
+		SceneManager.LoadScene ("Basti_Scene", LoadSceneMode.Additive);
+		SceneManager.LoadScene ("Benji_Scene", LoadSceneMode.Additive);
 		SceneManager.LoadSceneAsync ("James_Scene", LoadSceneMode.Additive);
 
 		Scene jamesScene = SceneManager.GetSceneByName ("James_Scene");
