@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerActions : MonoBehaviour {
 
@@ -8,13 +9,23 @@ public class PlayerActions : MonoBehaviour {
 
     public bool actionDoneThisRound;
     public float thisWorkloadValue;
-    private float blameValue;
+    public float maxWorkloadValue = 100;
     public float WORKLOADSHIFTVALUE = 10;
     public Department myDepartment;
+
+    public float minBlameWorkout = 25;
+    public float maxBlameWorkout = 75;
+    public float blameSpeed = 0.1f;
+
+    public Text buttonText;
+    public Slider sliderWorkload;
+
+    private float blameValue;
 
     private void Start()
     {
         actionDoneThisRound = false;
+        sliderWorkload.maxValue = maxWorkloadValue;
     }
 
     public void newRound()
@@ -67,7 +78,19 @@ public class PlayerActions : MonoBehaviour {
 
 	private bool init = false;
     private string[] depNames = System.Enum.GetNames(typeof(Department));
-    
+
+    private void FixedUpdate()
+    {
+        if (thisWorkloadValue > maxBlameWorkout || thisWorkloadValue < minBlameWorkout)
+        {
+            blameValue += blameSpeed;
+        }
+        else
+        {
+            blameValue -= blameSpeed;
+        }
+        Debug.Log(blameValue);
+    }
 
     void Update(){
 		if (!init && roundBasedGame.instance!=null && roundBasedGame.instance.playersArray!=null) {
@@ -90,4 +113,10 @@ public class PlayerActions : MonoBehaviour {
             }
 		}
 	}
+
+    private void LateUpdate()
+    {
+        sliderWorkload.value = thisWorkloadValue;
+        buttonText.text = myDepartment.ToString();
+    }
 }

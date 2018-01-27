@@ -7,7 +7,7 @@ public class TouchInput : MonoBehaviour {
 
     public string roomName = "Blame";
 
-    public Text testText1;
+    /*public Text testText1;
     public Text testText2;
 
     private int localValue = 10;
@@ -23,7 +23,7 @@ public class TouchInput : MonoBehaviour {
     {
         localValue += 1;
         testText2.text = "ValueLocal: " + localValue;
-    }
+    }*/
 
 
 }
