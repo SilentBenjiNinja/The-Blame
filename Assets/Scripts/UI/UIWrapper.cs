@@ -4,18 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIWrapper : MonoBehaviour {
-
-	public static UIWrapper instance;
-
-	void Start(){
-		if (instance == null) {
-			instance = this;
-			DontDestroyOnLoad (gameObject);
-		} else {
-			Destroy (gameObject);
-		}
-	}
-
+	
 	//-------------------------
 	//-------------------------
 
