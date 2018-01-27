@@ -11,12 +11,16 @@ public class SceneManagement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SceneManager.LoadScene ("Basti_Scene", LoadSceneMode.Additive);
-		SceneManager.LoadScene ("Benji_Scene", LoadSceneMode.Additive);
+		//SceneManager.LoadScene ("Basti_Scene", LoadSceneMode.Additive);
+		SceneManager.LoadSceneAsync ("Benji_Scene", LoadSceneMode.Additive);
 		SceneManager.LoadSceneAsync ("James_Scene", LoadSceneMode.Additive);
 
 		Scene jamesScene = SceneManager.GetSceneByName ("James_Scene");
 		loadingScenes.Add (jamesScene);
+		Scene benjiScene = SceneManager.GetSceneByName ("Benji_Scene");
+		loadingScenes.Add (benjiScene);
+		//Scene bastiScene = SceneManager.GetSceneByName ("Basti_Scene");
+		//loadingScenes.Add (bastiScene);
 	}
 
 	private bool[] RemoveCamDLight(GameObject gameObject, bool[] found){
@@ -30,6 +34,9 @@ public class SceneManagement : MonoBehaviour {
 			if (cam != null) {
 				found [0] = true;
 
+				Destroy (gameObject);
+
+				/*
 				AudioListener audioListener = gameObject.GetComponent<AudioListener> ();
 				if (audioListener != null) {
 					Destroy (audioListener);
@@ -41,6 +48,7 @@ public class SceneManagement : MonoBehaviour {
 				}
 
 				Destroy (cam);
+				*/
 
 			}
 		}
@@ -49,7 +57,8 @@ public class SceneManagement : MonoBehaviour {
 			Light dLight = gameObject.GetComponent<Light> ();
 			if (dLight != null) {
 				found [1] = true;
-				Destroy (dLight);
+				//Destroy (dLight);
+				Destroy(gameObject);
 			}
 		}
 
@@ -77,10 +86,9 @@ public class SceneManagement : MonoBehaviour {
 		for (int i = 0; i < loadingScenes.Count; i++) {
 			if (loadingScenes [i].isLoaded) {
 				Scene loadedScene = loadingScenes [i];
+				CleanUpScene (loadedScene);
 				loadingScenes.RemoveAt (i);
 				i--;
-
-				CleanUpScene (loadedScene);
 			}
 		}
 	}

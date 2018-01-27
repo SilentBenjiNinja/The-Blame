@@ -231,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &333268900
 MonoBehaviour:
@@ -261,7 +261,7 @@ MonoBehaviour:
   ROUNDTIME: 2
   roundTimeElapsed: 0
   playersArray:
-  - {fileID: 805081360}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -402,17 +402,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 720110159}
---- !u!1 &805081360 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1473483055903974, guid: d514908cb6b3cec449d1263415e2b008,
-    type: 2}
-  m_PrefabInternal: {fileID: 1106408057}
---- !u!114 &805081363 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114069229268297802, guid: d514908cb6b3cec449d1263415e2b008,
-    type: 2}
-  m_PrefabInternal: {fileID: 1106408057}
-  m_Script: {fileID: 11500000, guid: 5c9a1b5ece348a74cb15c4bf97a25270, type: 3}
 --- !u!1 &850349569
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,73 +478,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850349569}
---- !u!1001 &1106408057
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114689800690813982, guid: d514908cb6b3cec449d1263415e2b008,
-        type: 2}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 333268897}
-    - target: {fileID: 114806314782595220, guid: d514908cb6b3cec449d1263415e2b008,
-        type: 2}
-      propertyPath: viewIdField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114806314782595220, guid: d514908cb6b3cec449d1263415e2b008,
-        type: 2}
-      propertyPath: instantiationId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114069229268297802, guid: d514908cb6b3cec449d1263415e2b008,
-        type: 2}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 333268897}
-    - target: {fileID: 114689800690813982, guid: d514908cb6b3cec449d1263415e2b008,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1121053454
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 805081363}
+      - m_Target: {fileID: 0}
         m_MethodName: shiftWorkToPlayer
         m_Mode: 3
         m_Arguments:

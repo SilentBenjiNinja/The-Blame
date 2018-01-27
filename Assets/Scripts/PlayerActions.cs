@@ -6,12 +6,11 @@ public class PlayerActions : MonoBehaviour {
 
 
     public bool actionDoneThisRound;
-    public GameObject manager;
 
     private void Start()
     {
         actionDoneThisRound = false;
-        roundBasedGame.instance.playersArray.Add(this);
+        
     }
 
     public void newRound()
@@ -35,4 +34,15 @@ public class PlayerActions : MonoBehaviour {
     {
         Debug.Log("Round not over yet.");
     }
+
+	private bool init = false;
+
+	void Update(){
+		if (!init && roundBasedGame.instance!=null && roundBasedGame.instance.playersArray!=null) {
+			if(!roundBasedGame.instance.playersArray.Contains(this)){
+				roundBasedGame.instance.playersArray.Add(this);	
+			}
+			init = true;
+		}
+	}
 }
