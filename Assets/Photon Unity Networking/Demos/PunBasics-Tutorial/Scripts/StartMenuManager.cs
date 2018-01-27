@@ -9,6 +9,8 @@ public class StartMenuManager : MonoBehaviour {
     private GameObject startMenu;
     private GameObject howToPlay;
     private GameObject nameInput;
+    private GameObject lobby;
+    private GameObject waitingForPlayer;
 
     //private Image startMenu;
     private Image gameTitle;
@@ -16,11 +18,15 @@ public class StartMenuManager : MonoBehaviour {
 
     private void Start()
     {
+        waitingForPlayer = GameObject.Find("WaitingForPlayer");
+        lobby = GameObject.Find("Lobby");
         startMenu = GameObject.Find("StartMenu");
         howToPlay = GameObject.Find("HowToPlayBackground");
         nameInput = GameObject.Find("NameInput");
         howToPlay.SetActive(false);
         nameInput.SetActive(false);
+        lobby.SetActive(false);
+        waitingForPlayer.SetActive(false);
     }
 
     public void ExitGame()
@@ -35,8 +41,22 @@ public class StartMenuManager : MonoBehaviour {
         {
             howToPlay.SetActive(false);
             ActivateStartmenu();
+        }else if (lobby.activeSelf)
+        {
+            lobby.SetActive(false);
+            ActivateStartmenu();
         }
-        
+        else if (nameInput.activeSelf)
+        {
+            nameInput.SetActive(false);
+            ActivateStartmenu();
+        }
+        else if (waitingForPlayer.activeSelf)
+        {
+            waitingForPlayer.SetActive(false);
+            ActivateStartmenu();
+        }
+
 
     }
 
