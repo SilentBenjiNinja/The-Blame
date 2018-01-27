@@ -9,18 +9,16 @@ public class SceneManagement : MonoBehaviour {
 	//-------------------------
 	#region LoadOtherScenes
 
+	public List<string> scenesToLoad;
+
 	// Use this for initialization
 	void Start () {
-		//SceneManager.LoadScene ("Basti_Scene", LoadSceneMode.Additive);
-		SceneManager.LoadSceneAsync ("Benji_Scene", LoadSceneMode.Additive);
-		SceneManager.LoadSceneAsync ("James_Scene", LoadSceneMode.Additive);
 
-		Scene jamesScene = SceneManager.GetSceneByName ("James_Scene");
-		loadingScenes.Add (jamesScene);
-		Scene benjiScene = SceneManager.GetSceneByName ("Benji_Scene");
-		loadingScenes.Add (benjiScene);
-		//Scene bastiScene = SceneManager.GetSceneByName ("Basti_Scene");
-		//loadingScenes.Add (bastiScene);
+		for (int i = 0; i < scenesToLoad.Count; i++) {
+			SceneManager.LoadSceneAsync (scenesToLoad[i], LoadSceneMode.Additive);
+			Scene scene = SceneManager.GetSceneByName (scenesToLoad[i]);
+			loadingScenes.Add (scene);
+		}
 	}
 
 	private bool[] RemoveCamDLight(GameObject gameObject, bool[] found){
