@@ -17,8 +17,9 @@ public class StartMenuManager : MonoBehaviour {
         hostGame = GameObject.Find("HostGame").GetComponent<Button>();
         joinGame = GameObject.Find("JoinGame").GetComponent<Button>();
         howToPlay = GameObject.Find("HowToPlay").GetComponent<Button>();
-        backButton = GameObject.Find("BackButton").GetComponent<Button>();
+        backButton = GameObject.Find("Back").GetComponent<Button>();
         endGame = GameObject.Find("ExitGame").GetComponent<Button>();
+        backButton.enabled = false;
     }
 
     public void ExitGame()
