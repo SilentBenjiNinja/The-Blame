@@ -860,6 +860,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab08093e9f5d4e4d9c662f0215c27df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenesToLoad:
+  - James_Scene
+  - Benji_Scene
 --- !u!4 &1796199896
 Transform:
   m_ObjectHideFlags: 0

@@ -5,15 +5,22 @@ using UnityEngine;
 public class roundBasedGame : MonoBehaviour {
 
     private bool hasGameStarted = false;
+
     public float ROUNDTIME = 2;
     public float roundTimeElapsed;
+
+    public int ROUNDSBETWEENWORKLOADS = 10;
+    public int roundsElapsed;
+
+    public PlayerActions playerActions;
+
     public float overallTimeDepleted;
+
     public List<PlayerActions> playersArray;
     public static roundBasedGame instance;
 
     private void Start()
     {
-        overallTimeDepleted = 0;
         if (instance == null)
         {
             instance = this;
@@ -26,22 +33,31 @@ public class roundBasedGame : MonoBehaviour {
     }
 
     void StartGame () {
-        roundTimeElapsed = 0;        
+        hasGameStarted = true;
+        roundTimeElapsed = 0;
+        overallTimeDepleted = 0;
+        roundsElapsed = 0;
     }
 	
 	void Update () {
         overallTimeDepleted += Time.deltaTime;
         if (hasGameStarted)
         {
+            roundTimeElapsed += Time.deltaTime;
             if (roundTimeElapsed >= ROUNDTIME)
             {
+                roundTimeElapsed -= ROUNDTIME;
                 foreach (PlayerActions player in playersArray)
                 {
                     player.GetComponent<PlayerActions>().newRound();
                 }
-                roundTimeElapsed -= ROUNDTIME;
+                roundsElapsed += 1;
+                if (roundsElapsed >= ROUNDSBETWEENWORKLOADS)
+                {
+                    // ++++++++nextWorkload++++++++++++++++
+                    roundsElapsed = 0;
+                }
             }
-            roundTimeElapsed += Time.deltaTime;
         }
         else
         {

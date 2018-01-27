@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour {
 
+	public enum Department {HR,Sales,Management, IT}
 
     public bool actionDoneThisRound;
 
