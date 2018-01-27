@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour {
 
+    public enum Department { HR, Sales, Management, IT }
+
     public bool actionDoneThisRound;
     public float thisWorkloadValue;
     private float blameValue;
     public float WORKLOADSHIFTVALUE = 10;
+    public Department myDepartment;
 
     private void Start()
     {
@@ -63,13 +66,28 @@ public class PlayerActions : MonoBehaviour {
     }
 
 	private bool init = false;
+    private string[] depNames = System.Enum.GetNames(typeof(Department));
+    
 
-	void Update(){
+    void Update(){
 		if (!init && roundBasedGame.instance!=null && roundBasedGame.instance.playersArray!=null) {
 			if(!roundBasedGame.instance.playersArray.Contains(this)){
 				roundBasedGame.instance.playersArray.Add(this);	
 			}
 			init = true;
+            List<string> alreadyAssigned = new List<string>();
+            foreach (PlayerActions pa in roundBasedGame.instance.playersArray)
+            {
+                alreadyAssigned.Add(pa.myDepartment.ToString());
+            }
+            foreach (string depName in depNames)
+            {
+                if (!alreadyAssigned.Contains(depName))
+                {
+                    myDepartment = (Department)System.Enum.Parse(typeof(Department), depName);
+                    break;
+                }
+            }
 		}
 	}
 }
