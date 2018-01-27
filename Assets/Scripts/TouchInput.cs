@@ -7,13 +7,23 @@ public class TouchInput : MonoBehaviour {
 
     public string roomName = "Blame";
 
-    public Button testButton;
-    public Text boolText;
-    private bool isChanging = false;
+    public Text testText1;
+    public Text testText2;
+
+    private int localValue = 10;
+    public int globalValue = 10;
     
-    public void SwitchBool()
+    public void changeGlobal()
     {
-        isChanging = !isChanging;
-        boolText.text = "Your bool is: " + isChanging;
+        globalValue += 1;
+        testText1.text = "ValueGlobal: " + globalValue;
     }
+
+    public void changeLocal()
+    {
+        localValue += 1;
+        testText2.text = "ValueLocal: " + localValue;
+    }
+
+
 }
