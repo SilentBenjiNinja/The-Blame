@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour {
 
-
     public bool actionDoneThisRound;
+    public float thisWorkloadValue;
+    private float blameValue;
+    public float WORKLOADSHIFTVALUE = 10;
 
     private void Start()
     {
         actionDoneThisRound = false;
-        
     }
 
     public void newRound()
@@ -18,16 +19,42 @@ public class PlayerActions : MonoBehaviour {
         actionDoneThisRound = false;
     }
     
-    public void shiftWorkToPlayer(int playerId)
+    public void pushWorkload(PlayerActions receiver)
     {
         if (!actionDoneThisRound)
         {
             actionDoneThisRound = true;
+            receiver.plusWorkload(WORKLOADSHIFTVALUE);
+            thisWorkloadValue -= WORKLOADSHIFTVALUE;
         }
         else
         {
             noInputPossible();
         }
+    }
+
+    public void pullWorkload(PlayerActions giver)
+    {
+        if (!actionDoneThisRound)
+        {
+            actionDoneThisRound = true;
+            giver.minusWorkload(WORKLOADSHIFTVALUE);
+            thisWorkloadValue += WORKLOADSHIFTVALUE;
+        }
+        else
+        {
+            noInputPossible();
+        }
+    }
+
+    public void plusWorkload(float value)
+    {
+        thisWorkloadValue += value;
+    }
+
+    public void minusWorkload(float value)
+    {
+        thisWorkloadValue -= value;
     }
 
     private void noInputPossible()

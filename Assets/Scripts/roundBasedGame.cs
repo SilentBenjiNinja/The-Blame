@@ -19,6 +19,8 @@ public class roundBasedGame : MonoBehaviour {
     public List<PlayerActions> playersArray;
     public static roundBasedGame instance;
 
+    public float WORKLOADAUTOVALUE = 5;
+
     private void Start()
     {
         if (instance == null)
@@ -54,7 +56,10 @@ public class roundBasedGame : MonoBehaviour {
                 roundsElapsed += 1;
                 if (roundsElapsed >= ROUNDSBETWEENWORKLOADS)
                 {
-                    // ++++++++nextWorkload++++++++++++++++
+                    foreach (PlayerActions player in playersArray)
+                    {
+                        player.plusWorkload(WORKLOADAUTOVALUE);
+                    }
                     roundsElapsed = 0;
                 }
             }
