@@ -180,7 +180,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Action 1
+
+'
 --- !u!222 &274233400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -197,6 +199,7 @@ GameObject:
   - component: {fileID: 333268899}
   - component: {fileID: 333268898}
   - component: {fileID: 333268900}
+  - component: {fileID: 333268902}
   - component: {fileID: 333268901}
   m_Layer: 0
   m_Name: GameManager
@@ -211,7 +214,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333268897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7eb9d581edbf494693817ba67677513, type: 3}
   m_Name: 
@@ -228,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &333268900
 MonoBehaviour:
@@ -236,7 +239,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333268897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a65c581c61d5dad4da15cee9c71e70e0, type: 3}
   m_Name: 
@@ -262,6 +265,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &333268902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333268897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c36cff9f879c864faba951a2a7065ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: Blame
+  testText1: {fileID: 850349571}
+  testText2: {fileID: 1940093000}
+  globalValue: 10
 --- !u!1 &720110159
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,9 +356,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 805081363}
-        m_MethodName: shiftWorkToPlayer
-        m_Mode: 3
+      - m_Target: {fileID: 333268902}
+        m_MethodName: changeGlobal
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -508,7 +526,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4606352844677678, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114689800690813982, guid: d514908cb6b3cec449d1263415e2b008,
         type: 2}
@@ -614,9 +632,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2037662288}
-        m_MethodName: KillPlayer
-        m_Mode: 1
+      - m_Target: {fileID: 805081363}
+        m_MethodName: shiftWorkToPlayer
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1106,16 +1124,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: KILL!
+  m_Text: 'Action 2
+
+'
 --- !u!222 &1998195701
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1998195698}
---- !u!114 &2037662288 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114689800690813982, guid: d514908cb6b3cec449d1263415e2b008,
-    type: 2}
-  m_PrefabInternal: {fileID: 1106408057}
-  m_Script: {fileID: 11500000, guid: f38acd28a4294d14d9e32aa48393d4f2, type: 3}
