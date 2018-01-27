@@ -4,24 +4,53 @@ using UnityEngine;
 
 public class roundBasedGame : MonoBehaviour {
 
+    private bool hasGameStarted = false;
     public float ROUNDTIME = 2;
     public float roundTimeElapsed;
-    public GameObject[] playersArray;
+    public List<PlayerActions> playersArray;
+    public static roundBasedGame instance;
 
-	void Start () {
-        roundTimeElapsed = 0;
-        playersArray = GameObject.FindGameObjectsWithTag("Player");
+    private void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void StartGame () {
+        roundTimeElapsed = 0;        
     }
 	
 	void Update () {
-        if (roundTimeElapsed >= ROUNDTIME)
+        if (hasGameStarted)
         {
-            foreach (GameObject player in playersArray)
+            if (roundTimeElapsed >= ROUNDTIME)
             {
-                player.GetComponent<PlayerActions>().newRound();
+                foreach (PlayerActions player in playersArray)
+                {
+                    player.GetComponent<PlayerActions>().newRound();
+                }
+                roundTimeElapsed -= ROUNDTIME;
             }
-            roundTimeElapsed -= ROUNDTIME;
+            roundTimeElapsed += Time.deltaTime;
         }
-        roundTimeElapsed += Time.deltaTime;
+        else
+        {
+            if(playersArray == null)
+            {
+                playersArray = new List<PlayerActions>();
+            }
+            if (playersArray.Count == 4)
+            {
+                StartGame();
+            }
+        }
+        
 	}
 }
