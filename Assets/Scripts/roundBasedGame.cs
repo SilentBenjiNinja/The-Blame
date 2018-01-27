@@ -7,11 +7,13 @@ public class roundBasedGame : MonoBehaviour {
     private bool hasGameStarted = false;
     public float ROUNDTIME = 2;
     public float roundTimeElapsed;
+    public float overallTimeDepleted;
     public List<PlayerActions> playersArray;
     public static roundBasedGame instance;
 
     private void Start()
     {
+        overallTimeDepleted = 0;
         if (instance == null)
         {
             instance = this;
@@ -28,6 +30,7 @@ public class roundBasedGame : MonoBehaviour {
     }
 	
 	void Update () {
+        overallTimeDepleted += Time.deltaTime;
         if (hasGameStarted)
         {
             if (roundTimeElapsed >= ROUNDTIME)
