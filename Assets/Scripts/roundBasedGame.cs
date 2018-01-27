@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class roundBasedGame : MonoBehaviour {
 
@@ -12,14 +13,22 @@ public class roundBasedGame : MonoBehaviour {
     public int ROUNDSBETWEENWORKLOADS = 10;
     public int roundsElapsed;
 
-    public PlayerActions playerActions;
-
     public float overallTimeDepleted;
 
     public List<PlayerActions> playersArray;
     public static roundBasedGame instance;
 
     public float WORKLOADAUTOVALUE = 5;
+
+    public Text textTimeDepleted;
+    public Slider sliderUntilAutoWorkload;
+
+    private void Awake()
+    {
+        sliderUntilAutoWorkload.interactable = false;
+
+        sliderUntilAutoWorkload.maxValue = ROUNDTIME * ROUNDSBETWEENWORKLOADS;
+    }
 
     private void Start()
     {
@@ -49,18 +58,18 @@ public class roundBasedGame : MonoBehaviour {
             if (roundTimeElapsed >= ROUNDTIME)
             {
                 roundTimeElapsed -= ROUNDTIME;
+                roundsElapsed += 1;
                 foreach (PlayerActions player in playersArray)
                 {
                     player.GetComponent<PlayerActions>().newRound();
                 }
-                roundsElapsed += 1;
                 if (roundsElapsed >= ROUNDSBETWEENWORKLOADS)
                 {
+                    roundsElapsed -= ROUNDSBETWEENWORKLOADS;
                     foreach (PlayerActions player in playersArray)
                     {
                         player.plusWorkload(WORKLOADAUTOVALUE);
                     }
-                    roundsElapsed = 0;
                 }
             }
         }
@@ -75,6 +84,11 @@ public class roundBasedGame : MonoBehaviour {
                 StartGame();
             }
         }
-        
 	}
+
+    private void LateUpdate()
+    {
+        sliderUntilAutoWorkload.value = roundsElapsed * ROUNDTIME + roundTimeElapsed;
+        textTimeDepleted.text = overallTimeDepleted.ToString();
+    }
 }
