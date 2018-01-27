@@ -8,6 +8,7 @@ public class PlayerActions : MonoBehaviour {
     public GameObject manager;
 
 
+
     private void Start()
     {
         actionDoneThisRound = false;
@@ -20,7 +21,18 @@ public class PlayerActions : MonoBehaviour {
     
     public void shiftWorkToPlayer(int playerId)
     {
+        if (!actionDoneThisRound)
+        {
+            actionDoneThisRound = true;
+        }
+        else
+        {
+            noInputPossible();
+        }
+    }
 
-        actionDoneThisRound = true;
+    private void noInputPossible()
+    {
+        Debug.Log("Round not over yet.");
     }
 }

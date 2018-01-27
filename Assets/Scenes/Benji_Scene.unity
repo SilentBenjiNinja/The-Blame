@@ -258,7 +258,7 @@ MonoBehaviour:
   ROUNDTIME: 2
   roundTimeElapsed: 0
   playersArray:
-  - {fileID: 0}
+  - {fileID: 805081360}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: -4}
+  m_AnchoredPosition: {x: 0.0000019073, y: 0.0000052452}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720110161
@@ -338,9 +338,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 333268898}
-        m_MethodName: SwitchBool
-        m_Mode: 1
+      - m_Target: {fileID: 805081363}
+        m_MethodName: shiftWorkToPlayer
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -384,6 +384,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 720110159}
+--- !u!1 &805081360 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1473483055903974, guid: d514908cb6b3cec449d1263415e2b008,
+    type: 2}
+  m_PrefabInternal: {fileID: 1106408057}
+--- !u!114 &805081363 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114069229268297802, guid: d514908cb6b3cec449d1263415e2b008,
+    type: 2}
+  m_PrefabInternal: {fileID: 1106408057}
+  m_Script: {fileID: 11500000, guid: 5c9a1b5ece348a74cb15c4bf97a25270, type: 3}
 --- !u!1 &850349569
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,8 +427,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.000603, y: 83.1}
-  m_SizeDelta: {x: 435.6, y: 72.9}
+  m_AnchoredPosition: {x: 13.000603, y: 75.6}
+  m_SizeDelta: {x: 435.6, y: 57.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &850349571
 MonoBehaviour:
@@ -451,7 +462,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'My bool is:'
+  m_Text: 'Action 1
+
+'
 --- !u!222 &850349572
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -512,6 +525,16 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114069229268297802, guid: d514908cb6b3cec449d1263415e2b008,
+        type: 2}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 333268897}
+    - target: {fileID: 114689800690813982, guid: d514908cb6b3cec449d1263415e2b008,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d514908cb6b3cec449d1263415e2b008, type: 2}
   m_IsPrefabParent: 0
@@ -549,7 +572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.99997, y: -128}
+  m_AnchoredPosition: {x: 0, y: -122}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121053456
@@ -974,8 +997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 158}
-  m_SizeDelta: {x: 435.57, y: 76.981}
+  m_AnchoredPosition: {x: 13.001, y: -67}
+  m_SizeDelta: {x: 435.6, y: 58.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940093000
 MonoBehaviour:
@@ -1009,7 +1032,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'My bool is:'
+  m_Text: Action 2
 --- !u!222 &1940093001
 CanvasRenderer:
   m_ObjectHideFlags: 0
