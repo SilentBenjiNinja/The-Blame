@@ -54,6 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionDoneThisRound: 0
+  maxWorkloadValue: 100
+  WORKLOADSHIFTVALUE: 10
+  myDepartment: 0
+  maxBlameValue: 100
+  minBlameWorkout: 25
+  maxBlameWorkout: 75
+  blameSpeed: 0.1
+  hasBlameSticker: 0
+  buttonText: {fileID: 0}
+  sliderWorkload: {fileID: 0}
+  sliderBlame: {fileID: 0}
 --- !u!114 &114689800690813982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,7 +98,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4606352844677678}
+  - {fileID: 114069229268297802}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
