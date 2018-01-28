@@ -165,7 +165,9 @@ public class PlayerActions : Photon.MonoBehaviour {
 					if (isPlayer) {
 						cheat.gotoPlayer.transformButton = buttonText.transform;
 						cheat.gotoPlayer.enabled = true;
-					}
+                        Button myButton = cheat.buttonList[(int)myDepartment];
+                        //myButton.onClick.AddListener(delegate() {  })          
+                    }
 				}
 
 				if (sliderWorkload != null) {
