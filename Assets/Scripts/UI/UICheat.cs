@@ -7,6 +7,7 @@ public class UICheat : MonoBehaviour {
 
 	public List<Text> buttonTexts;
 	public List<Slider> workloadSliders;
+    public GoToYourPlayer gotoPlayer;
 
 	// Use this for initialization
 	void Start () {
