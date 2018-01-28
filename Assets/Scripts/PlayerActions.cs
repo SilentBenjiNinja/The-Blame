@@ -43,7 +43,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			name = "I am " + photonView.owner.NickName;
 		}
 
-		if (workloadToGive == null) {
+		if (workloadToGive == null || workloadToGive.Count<4 || workloadToTake.Count<4) {
 			workloadToGive = new List<float> ();
 			for (int i = 0; i < 4; i++) {
 				workloadToGive.Add (0);
