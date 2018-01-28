@@ -9,12 +9,17 @@ public class SplashScreen : MonoBehaviour
     [SerializeField] private string loadLevel;
     [SerializeField] float fadeInTime = 1.5f;
     [SerializeField] float fadeOutTime = 2.5f;
+    private AudioSource spawnSound;
 
+    
+    
     IEnumerator Start()
     {
+        spawnSound = splashImage.gameObject.GetComponent<AudioSource>();
         splashImage.canvasRenderer.SetAlpha(0.0f);
 
         FadeIn();
+        spawnSound.Play();
         yield return new WaitForSeconds(fadeInTime);
 
 
