@@ -304,17 +304,21 @@ public class PlayerActions : Photon.MonoBehaviour {
 				blameValue = (float)stream.ReceiveNext ();
 				hasBlameSticker = (bool)stream.ReceiveNext ();
 
-				List<float> workloadReceived = new List<float> ();
-				for (int i = 0; i < 4; i++) {
-					workloadReceived.Add((float)stream.ReceiveNext ());
-				}
-				List<float> workloadTakenFromMe = new List<float> ();
-				for (int i = 0; i < 4; i++) {
-					workloadTakenFromMe.Add((float)stream.ReceiveNext ());
-				}
+				if (stream.Count == 12) {
 
-				thisWorkloadValue += workloadReceived [(int)myDepartment];
-				thisWorkloadValue -= workloadTakenFromMe [(int)myDepartment];
+					List<float> workloadReceived = new List<float> ();
+					for (int i = 0; i < 4; i++) {
+						workloadReceived.Add ((float)stream.ReceiveNext ());
+					}
+					List<float> workloadTakenFromMe = new List<float> ();
+					for (int i = 0; i < 4; i++) {
+						workloadTakenFromMe.Add ((float)stream.ReceiveNext ());
+					}
+
+					thisWorkloadValue += workloadReceived [(int)myDepartment];
+					thisWorkloadValue -= workloadTakenFromMe [(int)myDepartment];
+
+				}
 
 				Debug.Log (name + " has Received from: " + info.sender.NickName);
 			}
