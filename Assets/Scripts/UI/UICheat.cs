@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UICheat : MonoBehaviour {
 
 	public List<Text> buttonTexts;
+	public List<Slider> workloadSliders;
 
 	// Use this for initialization
 	void Start () {

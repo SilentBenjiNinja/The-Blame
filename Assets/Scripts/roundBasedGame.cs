@@ -16,6 +16,7 @@ public class roundBasedGame : MonoBehaviour {
     public float overallTimeDepleted;
 
     public List<PlayerActions> playersArray;
+	public Dictionary<PlayerActions.Department, PlayerActions> playerMap = new Dictionary<PlayerActions.Department, PlayerActions>();
     public static roundBasedGame instance;
 
     public float WORKLOADAUTOVALUE = 5;
