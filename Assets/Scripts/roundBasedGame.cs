@@ -6,6 +6,13 @@ using UnityEngine.UI;
 public class roundBasedGame : MonoBehaviour {
 
     private bool hasGameStarted = false;
+	public bool HasGameStarted{
+		get{ 
+			return hasGameStarted;
+		}
+	}
+
+	public int numPlayersToStart = 4;
 
     public float ROUNDTIME = 2;
     public float roundTimeElapsed;
@@ -35,6 +42,7 @@ public class roundBasedGame : MonoBehaviour {
 
     private void Start()
     {
+		playersArray = new List<PlayerActions> ();
         if (instance == null)
         {
             instance = this;
@@ -84,7 +92,7 @@ public class roundBasedGame : MonoBehaviour {
             {
                 playersArray = new List<PlayerActions>();
             }
-            if (playersArray.Count == 4)
+            if (playersArray.Count == numPlayersToStart)
             {
                 StartGame();
             }
