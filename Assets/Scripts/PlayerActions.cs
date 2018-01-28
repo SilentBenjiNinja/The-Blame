@@ -165,8 +165,29 @@ public class PlayerActions : Photon.MonoBehaviour {
 					if (isPlayer) {
 						cheat.gotoPlayer.transformButton = buttonText.transform;
 						cheat.gotoPlayer.enabled = true;
-                        Button myButton = cheat.buttonList[(int)myDepartment];
-                        //myButton.onClick.AddListener(delegate() {  })          
+
+						for (int i = 0; i < cheat.fromButtonList.Count; i++) {
+							if (i == (int)myDepartment) {
+								cheat.fromButtonList [i].interactable = false;
+							} else {
+								cheat.fromButtonList [i].interactable = true;
+								Button otherButton = cheat.fromButtonList [i];
+								if (roundBasedGame.instance.playerMap.ContainsKey ((Department)i)) {
+									PlayerActions receiver = roundBasedGame.instance.playerMap [(Department)i];
+									otherButton.onClick.AddListener (delegate() {
+										pushWorkload (receiver);	
+										cheat.pickOtherUI.SetActive (false);
+									}); 
+								} else {
+									otherButton.interactable = false;
+								}
+							}
+
+							Button myButton = cheat.buttonList [(int)myDepartment];
+							myButton.onClick.AddListener (delegate() {
+							cheat.pickOtherUI.SetActive(true);
+							}); 
+						}
                     }
 				}
 
