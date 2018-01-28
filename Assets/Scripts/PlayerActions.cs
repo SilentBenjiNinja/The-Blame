@@ -209,6 +209,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			stream.SendNext((int)myDepartment);
 			stream.SendNext(blameValue);
 			stream.SendNext(hasBlameSticker);
+			Debug.Log("Sending: " + info.sender.NickName);
 		}
 		else
 		{
@@ -216,6 +217,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			myDepartment = (Department)((int)stream.ReceiveNext());
 			blameValue = (float)stream.ReceiveNext();
 			hasBlameSticker = (bool)stream.ReceiveNext();
+			Debug.Log("Received from: " + info.sender.NickName);
 		}
 	}
 }
