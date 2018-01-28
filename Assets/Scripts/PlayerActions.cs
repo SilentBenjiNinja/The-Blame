@@ -162,7 +162,7 @@ public class PlayerActions : MonoBehaviour {
 				}
 
 				if (sliderWorkload != null) {
-					sliderWorkload.maxValue = maxWorkloadValue;
+					//sliderWorkload.maxValue = maxWorkloadValue;
 				}
 			}
 
