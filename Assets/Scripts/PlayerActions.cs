@@ -134,6 +134,13 @@ public class PlayerActions : Photon.MonoBehaviour {
     void Update(){
 		if (!init && roundBasedGame.instance!=null && roundBasedGame.instance.playersArray!=null) {
 
+			PhotonView pv = GetComponent<PhotonView> ();
+			if (pv != null) {
+				int dptInt = pv.viewID / 1000;
+				myDepartment = (Department)(dptInt - 1);
+			}
+
+			/*
 			// assign a free department to the player
 			for (int i = 0; i < depNames.Length; i++) {
 				if (!roundBasedGame.instance.playerMap.ContainsValue (this)) {
@@ -150,6 +157,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			if (!roundBasedGame.instance.playersArray.Contains (this)) {
 				roundBasedGame.instance.playersArray.Add (this);
 			}
+			*/
 
 			if (sliderBlame == null) {
 
