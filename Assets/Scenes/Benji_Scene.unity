@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44658017, g: 0.49641502, b: 0.57482153, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -602,6 +602,7 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
+  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
   minBlameWorkout: 25
@@ -609,6 +610,7 @@ MonoBehaviour:
   blameSpeed: 0.1
   buttonText: {fileID: 1389577383}
   sliderWorkload: {fileID: 1193101436}
+  sliderBlame: {fileID: 0}
 --- !u!1 &273552896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
+  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
   minBlameWorkout: 25
@@ -1288,6 +1291,7 @@ MonoBehaviour:
   blameSpeed: 0.1
   buttonText: {fileID: 1590279161}
   sliderWorkload: {fileID: 608025816}
+  sliderBlame: {fileID: 0}
 --- !u!1 &608025814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1734,7 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
+  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
   minBlameWorkout: 25
@@ -1737,6 +1742,7 @@ MonoBehaviour:
   blameSpeed: 0.1
   buttonText: {fileID: 274233399}
   sliderWorkload: {fileID: 1578125310}
+  sliderBlame: {fileID: 0}
 --- !u!1 &813821120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,6 +1959,7 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
+  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
   minBlameWorkout: 25
@@ -1960,6 +1967,7 @@ MonoBehaviour:
   blameSpeed: 0.1
   buttonText: {fileID: 671070980}
   sliderWorkload: {fileID: 1197558778}
+  sliderBlame: {fileID: 0}
 --- !u!1 &1108323815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3346,11 @@ MonoBehaviour:
   - {fileID: 1590279161}
   - {fileID: 1389577383}
   - {fileID: 671070980}
+  workloadSliders:
+  - {fileID: 1578125310}
+  - {fileID: 608025816}
+  - {fileID: 1193101436}
+  - {fileID: 1197558778}
 --- !u!1 &1943733230
 GameObject:
   m_ObjectHideFlags: 0

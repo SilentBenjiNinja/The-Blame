@@ -101,9 +101,11 @@ public class PlayerActions : MonoBehaviour {
 
 			// assign a free department to the player
 			for (int i = 0; i < depNames.Length; i++) {
-				if (!roundBasedGame.instance.playerMap.ContainsKey ((Department)i) || roundBasedGame.instance.playerMap [(Department)i] == null) {
-					myDepartment = (Department)i;
-					roundBasedGame.instance.playerMap.Add (myDepartment, this);
+				if (!roundBasedGame.instance.playerMap.ContainsValue (this)) {
+					if (!roundBasedGame.instance.playerMap.ContainsKey ((Department)i) || roundBasedGame.instance.playerMap [(Department)i] == null) {
+						myDepartment = (Department)i;
+						roundBasedGame.instance.playerMap.Add (myDepartment, this);
+					}
 				}
 			}
 
@@ -123,13 +125,16 @@ public class PlayerActions : MonoBehaviour {
 				}
 			}
 
-			if (sliderWorkload != null) {
-				sliderWorkload.maxValue = maxWorkloadValue;
-
-				UICheat cheat = sliderWorkload.GetComponent<UICheat> ();
+			if (sliderBlame != null) {
+				
+				UICheat cheat = sliderBlame.GetComponent<UICheat> ();
 				if (cheat != null) {
 					buttonText = cheat.buttonTexts [(int)myDepartment];
 					sliderWorkload = cheat.workloadSliders[(int)myDepartment];
+				}
+
+				if (sliderWorkload != null) {
+					sliderWorkload.maxValue = maxWorkloadValue;
 				}
 			}
 
