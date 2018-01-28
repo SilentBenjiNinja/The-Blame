@@ -10,7 +10,7 @@ public class PlayerActions : MonoBehaviour {
 
     public bool actionDoneThisRound;
 
-    public float thisWorkloadValue;
+    private float thisWorkloadValue;
     public float maxWorkloadValue = 100;
 	
     public float WORKLOADSHIFTVALUE = 10;
@@ -99,6 +99,10 @@ public class PlayerActions : MonoBehaviour {
 
     private void FixedUpdate()
     {
+		if (roundBasedGame.instance==null || !roundBasedGame.instance.HasGameStarted) {
+			return;
+		}
+
         if (thisWorkloadValue > maxBlameWorkout || thisWorkloadValue < minBlameWorkout)
         {
             blameValue += blameSpeed;
@@ -128,6 +132,9 @@ public class PlayerActions : MonoBehaviour {
 						roundBasedGame.instance.playerMap.Add (myDepartment, this);
 					}
 				}
+			}
+			if (!roundBasedGame.instance.playersArray.Contains (this)) {
+				roundBasedGame.instance.playersArray.Add (this);
 			}
 
 			if (sliderBlame == null) {
