@@ -9,22 +9,26 @@ public class PlayerActions : MonoBehaviour {
     public enum Department { HR, Sales, Management, IT }
 
     public bool actionDoneThisRound;
+
     public float thisWorkloadValue;
     public float maxWorkloadValue = 100;
-	public float maxBlameValue = 100;
+	
     public float WORKLOADSHIFTVALUE = 10;
     public Department myDepartment;
 
+    public float maxBlameValue = 100;
     public float minBlameWorkout = 25;
     public float maxBlameWorkout = 75;
     public float blameSpeed = 0.1f;
+    
+    private float blameValue;
+
+    public bool hasBlameSticker = false;
 
     public Text buttonText;
     public Slider sliderWorkload;
 	public Slider sliderBlame;
-
-    private float blameValue;
-
+    
     private void Start()
     {
         actionDoneThisRound = false;
@@ -78,6 +82,18 @@ public class PlayerActions : MonoBehaviour {
         Debug.Log("Round not over yet.");
     }
 
+    public void getBlameSticker()
+    {
+        hasBlameSticker = true;
+        foreach (PlayerActions player in roundBasedGame.instance.playersArray)
+        {
+            if (player != this)
+            {
+                hasBlameSticker = false;
+            }
+        }
+    }
+
 	private bool init = false;
     private string[] depNames = System.Enum.GetNames(typeof(Department));
 
@@ -90,6 +106,11 @@ public class PlayerActions : MonoBehaviour {
         else
         {
             blameValue -= blameSpeed;
+        }
+        if (blameValue >= maxBlameValue)
+        {
+            blameValue = 0;
+            getBlameSticker();
         }
 		if (sliderBlame) {
 			sliderBlame.value = blameValue / maxBlameValue;
