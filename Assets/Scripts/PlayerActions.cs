@@ -11,6 +11,7 @@ public class PlayerActions : MonoBehaviour {
     public bool actionDoneThisRound;
     public float thisWorkloadValue;
     public float maxWorkloadValue = 100;
+	public float maxBlameValue = 100;
     public float WORKLOADSHIFTVALUE = 10;
     public Department myDepartment;
 
@@ -20,6 +21,7 @@ public class PlayerActions : MonoBehaviour {
 
     public Text buttonText;
     public Slider sliderWorkload;
+	public Slider sliderBlame;
 
     private float blameValue;
 
@@ -89,40 +91,33 @@ public class PlayerActions : MonoBehaviour {
         {
             blameValue -= blameSpeed;
         }
-        Debug.Log(blameValue);
+		if (sliderBlame) {
+			sliderBlame.value = blameValue / maxBlameValue;
+		}
     }
 
     void Update(){
 		if (!init && roundBasedGame.instance!=null && roundBasedGame.instance.playersArray!=null) {
-			if(!roundBasedGame.instance.playersArray.Contains(this)){
-				roundBasedGame.instance.playersArray.Add(this);	
-			}
-			init = true;
-            List<string> alreadyAssigned = new List<string>();
-            foreach (PlayerActions pa in roundBasedGame.instance.playersArray)
-            {
-                alreadyAssigned.Add(pa.myDepartment.ToString());
-            }
-            foreach (string depName in depNames)
-            {
-                if (!alreadyAssigned.Contains(depName))
-                {
-                    myDepartment = (Department)System.Enum.Parse(typeof(Department), depName);
-                    break;
-                }
-            }
 
-			if (sliderWorkload == null) {
+			// assign a free department to the player
+			for (int i = 0; i < depNames.Length; i++) {
+				if (!roundBasedGame.instance.playerMap.ContainsKey ((Department)i) || roundBasedGame.instance.playerMap [(Department)i] == null) {
+					myDepartment = (Department)i;
+					roundBasedGame.instance.playerMap.Add (myDepartment, this);
+				}
+			}
+
+			if (sliderBlame == null) {
 
 				Scene benjiScene = SceneManager.GetSceneByName ("Benji_Scene");
 
 				GameObject[] roots = benjiScene.GetRootGameObjects ();
-				for (int i = 0; i < roots.Length && sliderWorkload==null; i++) {
+				for (int i = 0; i < roots.Length && sliderBlame==null; i++) {
 					Transform sliderTF = roots [i].transform.Find ("BlameMeter");
 					if (sliderTF != null && sliderTF.gameObject != null) {
 						Slider slider = sliderTF.GetComponent<Slider> ();
 						if (slider != null) {
-							sliderWorkload = slider;
+							sliderBlame = slider;
 						}
 					}
 				}
@@ -132,8 +127,13 @@ public class PlayerActions : MonoBehaviour {
 				sliderWorkload.maxValue = maxWorkloadValue;
 
 				UICheat cheat = sliderWorkload.GetComponent<UICheat> ();
-				buttonText = cheat.buttonTexts [(int)myDepartment];
+				if (cheat != null) {
+					buttonText = cheat.buttonTexts [(int)myDepartment];
+					sliderWorkload = cheat.workloadSliders[(int)myDepartment];
+				}
 			}
+
+			init = true;
 
 		}
 	}
