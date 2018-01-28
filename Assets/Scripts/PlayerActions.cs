@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon;
 
-public class PlayerActions : MonoBehaviour {
+[RequireComponent(typeof(PhotonView))]
+public class PlayerActions : Photon.MonoBehaviour {
 
     public enum Department { HR, Sales, Management, IT }
 
@@ -197,4 +199,23 @@ public class PlayerActions : MonoBehaviour {
 			buttonText.text = myDepartment.ToString ();
 		}
     }
+
+
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			stream.SendNext(thisWorkloadValue);
+			stream.SendNext((int)myDepartment);
+			stream.SendNext(blameValue);
+			stream.SendNext(hasBlameSticker);
+		}
+		else
+		{
+			thisWorkloadValue = (float)stream.ReceiveNext();
+			myDepartment = (Department)((int)stream.ReceiveNext());
+			blameValue = (float)stream.ReceiveNext();
+			hasBlameSticker = (bool)stream.ReceiveNext();
+		}
+	}
 }
