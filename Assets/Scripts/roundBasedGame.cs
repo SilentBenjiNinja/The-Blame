@@ -92,6 +92,14 @@ public class roundBasedGame : MonoBehaviour {
 					i--;
 				}
 			}
+
+			playerMap.Clear ();
+			for (int i = 0; i < playersArray.Count; i++) {
+				if (playersArray [i] != null) {
+					playerMap.Add (playersArray[i].myDepartment, playersArray [i]);
+				}
+			}
+
 		}
 
         if (hasGameStarted)
