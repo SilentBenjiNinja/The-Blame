@@ -20,11 +20,15 @@ public class roundBasedGame : MonoBehaviour {
     public int ROUNDSBETWEENWORKLOADS = 10;
     public int roundsElapsed;
 
+
     public float overallTimeDepleted;
 
     public List<PlayerActions> playersArray;
+	public List<PlayerActions> playersArrayEver = new List<PlayerActions>();
 	public Dictionary<PlayerActions.Department, PlayerActions> playerMap = new Dictionary<PlayerActions.Department, PlayerActions>();
-    public static roundBasedGame instance;
+    
+	public static roundBasedGame instance;
+	public static int instanceCount = 0;
 
     public float WORKLOADAUTOVALUE = 5;
 
@@ -42,6 +46,7 @@ public class roundBasedGame : MonoBehaviour {
 
     private void Start()
     {
+		instanceCount++;
 		playersArray = new List<PlayerActions> ();
         if (instance == null)
         {
@@ -64,9 +69,26 @@ public class roundBasedGame : MonoBehaviour {
 	void Update () {
         
 		if (playersArray != null) {
-			for (int i = 0; i < playersArray.Count; i++) {
-				if (playersArray [i] == null) {
-					playersArray.RemoveAt (i);
+			for (int i = 0; i < playersArray.Count; i++) {				
+				if (playersArray [i] != null && !playersArrayEver.Contains (playersArray [i])) {
+					playersArrayEver.Add (playersArray [i]);
+				}
+			}
+
+			playersArray.Clear ();
+			for (int i = 0; i < playersArrayEver.Count; i++) {
+				if (playersArrayEver [i] != null) {
+					PhotonView pv = playersArrayEver [i].GetComponent<PhotonView> ();
+
+					if (pv != null) {
+						int endID = pv.viewID % 1000;
+						if (endID == instanceCount) {
+
+							playersArray.Add (playersArrayEver [i]);
+						}
+					}
+				} else {
+					playersArrayEver.RemoveAt (i);
 					i--;
 				}
 			}
