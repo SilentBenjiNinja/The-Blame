@@ -11,6 +11,9 @@ public class StartMenuManager : MonoBehaviour {
     private GameObject nameInput;
     private GameObject lobby;
     private GameObject waitingForPlayer;
+    private Text gameRules;
+    private Text gameRulesHeader;
+    private GameObject NextPageButton;
 
     //private Image startMenu;
     private Image gameTitle;
@@ -21,15 +24,19 @@ public class StartMenuManager : MonoBehaviour {
         startMenu = GameObject.Find("StartMenu");
         if(startMenu != null)
         {
-
-        waitingForPlayer = GameObject.Find("WaitingForPlayer");
-        lobby = GameObject.Find("Lobby");
-        howToPlay = GameObject.Find("HowToPlayBackground");
-        nameInput = GameObject.Find("NameInput");
-        howToPlay.SetActive(false);
-        nameInput.SetActive(false);
-        lobby.SetActive(false);
-        waitingForPlayer.SetActive(false);
+            NextPageButton = GameObject.Find("NextPageButton");
+            waitingForPlayer = GameObject.Find("WaitingForPlayer");
+            lobby = GameObject.Find("Lobby");
+            howToPlay = GameObject.Find("HowToPlayBackground");
+            nameInput = GameObject.Find("NameInput");
+            gameRulesHeader = GameObject.Find("GameRulesHeader").GetComponent<Text>();
+            gameRules = GameObject.Find("GameRulesText").GetComponent<Text>();
+            gameRules.text = StringCollection.GAMERULESPAGEONE;
+            gameRulesHeader.text = StringCollection.GAMERULESONE;
+            howToPlay.SetActive(false);
+            nameInput.SetActive(false);
+            lobby.SetActive(false);
+            waitingForPlayer.SetActive(false);
         }
 
     }
@@ -42,11 +49,23 @@ public class StartMenuManager : MonoBehaviour {
     public void GoBack()
     {
 
-        if (howToPlay.activeSelf)
+        if (howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGEONE)
         {
             howToPlay.SetActive(false);
             ActivateStartmenu();
-        }else if (lobby.activeSelf)
+        }else if(howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGETWO)
+        {
+            NextPageButton.SetActive(true);
+            gameRulesHeader.text = StringCollection.GAMERULESONE;
+            gameRules.text = StringCollection.GAMERULESPAGEONE;
+        }
+        else if (howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGETHREE)
+        {
+            NextPageButton.SetActive(true);
+            gameRulesHeader.text = StringCollection.GAMERULESONE;
+            gameRules.text = StringCollection.GAMERULESPAGEONE;
+        }
+        else if (lobby.activeSelf)
         {
             lobby.SetActive(false);
             ActivateStartmenu();
@@ -79,6 +98,21 @@ public class StartMenuManager : MonoBehaviour {
     public void OpenHowToPlay()
     {
         DectivateStartmenu();
+        NextPageButton.SetActive(true);
         howToPlay.SetActive(true);
+    }
+
+    public void OpenNext()
+    {
+        if(gameRules.text == StringCollection.GAMERULESPAGEONE)
+        {
+            gameRulesHeader.text = StringCollection.GAMERULESTWO;
+            gameRules.text = StringCollection.GAMERULESPAGETWO;
+        }else if(gameRules.text == StringCollection.GAMERULESPAGETWO)
+        {
+            gameRulesHeader.text = StringCollection.GAMERULESTHREE;
+            gameRules.text = StringCollection.GAMERULESPAGETHREE;
+            NextPageButton.SetActive(false);
+        }
     }
 }
