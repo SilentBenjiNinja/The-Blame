@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using Photon;
 
 [RequireComponent(typeof(PhotonView))]
-public class PlayerActions : Photon.MonoBehaviour {
+public class PlayerActions : Photon.PunBehaviour, IPunObservable {
 
     public enum Department { HR, Sales, Management, IT }
 
@@ -258,6 +258,72 @@ public class PlayerActions : Photon.MonoBehaviour {
 
 	public List<float> workloadToGive;
 	public List<float> workloadToTake;
+
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			if (isPlayer) {
+				stream.SendNext (thisWorkloadValue);
+				stream.SendNext ((int)myDepartment);
+				stream.SendNext (blameValue);
+				stream.SendNext (hasBlameSticker);
+				for (int i = 0; i < workloadToGive.Count; i++) {
+					stream.SendNext (workloadToGive[i]);
+				}
+				for (int i = 0; i < workloadToTake.Count; i++) {
+					stream.SendNext (workloadToTake[i]);
+				}
+
+				for (int i = 0; i < workloadToGive.Count; i++) {
+					workloadToGive [i] = 0;
+				}
+				for (int i = 0; i < workloadToTake.Count; i++) {
+					workloadToTake [i] = 0;
+				}
+			}
+		}
+		else
+		{
+			if (!isPlayer) {
+
+				thisWorkloadValue = (float)stream.ReceiveNext ();
+
+				//Department oldDept = myDepartment;
+				myDepartment = (Department)((int)stream.ReceiveNext ());
+				/*
+				if (oldDept != myDepartment) {
+					roundBasedGame.instance.playerMap [oldDept] = null;
+					if (roundBasedGame.instance.playerMap.ContainsKey (myDepartment)) {
+						roundBasedGame.instance.playerMap [myDepartment] = this;
+					} else {
+						roundBasedGame.instance.playerMap.Add (myDepartment, this);
+					}
+				}*/
+
+				blameValue = (float)stream.ReceiveNext ();
+				hasBlameSticker = (bool)stream.ReceiveNext ();
+
+				if (stream.Count == 12) {
+
+					List<float> workloadReceived = new List<float> ();
+					for (int i = 0; i < 4; i++) {
+						workloadReceived.Add ((float)stream.ReceiveNext ());
+					}
+					List<float> workloadTakenFromMe = new List<float> ();
+					for (int i = 0; i < 4; i++) {
+						workloadTakenFromMe.Add ((float)stream.ReceiveNext ());
+					}
+
+					thisWorkloadValue += workloadReceived [(int)myDepartment];
+					thisWorkloadValue -= workloadTakenFromMe [(int)myDepartment];
+
+				}
+
+				Debug.Log (name + " has Received from: " + info.sender.NickName);
+			}
+		}
+	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
