@@ -63,6 +63,15 @@ public class roundBasedGame : MonoBehaviour {
 	
 	void Update () {
         
+		if (playersArray != null) {
+			for (int i = 0; i < playersArray.Count; i++) {
+				if (playersArray [i] == null) {
+					playersArray.RemoveAt (i);
+					i--;
+				}
+			}
+		}
+
         if (hasGameStarted)
         {
 			overallTimeDepleted += Time.deltaTime;
