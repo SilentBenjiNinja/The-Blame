@@ -65,6 +65,8 @@ MonoBehaviour:
   buttonText: {fileID: 0}
   sliderWorkload: {fileID: 0}
   sliderBlame: {fileID: 0}
+  workloadToGive: []
+  workloadToTake: []
 --- !u!114 &114689800690813982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,7 +95,7 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 3
+  synchronization: 2
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
