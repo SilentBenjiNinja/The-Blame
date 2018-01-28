@@ -14,6 +14,7 @@ public class StartMenuManager : MonoBehaviour {
     private Text gameRules;
     private Text gameRulesHeader;
     private GameObject NextPageButton;
+    private AudioSource clickSound;
 
     //private Image startMenu;
     private Image gameTitle;
@@ -24,6 +25,7 @@ public class StartMenuManager : MonoBehaviour {
         startMenu = GameObject.Find("StartMenu");
         if(startMenu != null)
         {
+            clickSound = GameObject.Find("ClickSoundManager").GetComponent<AudioSource>();
             NextPageButton = GameObject.Find("NextPageButton");
             waitingForPlayer = GameObject.Find("WaitingForPlayer");
             lobby = GameObject.Find("Lobby");
@@ -51,32 +53,38 @@ public class StartMenuManager : MonoBehaviour {
 
         if (howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGEONE)
         {
+            clickSound.Play();
             howToPlay.SetActive(false);
             ActivateStartmenu();
         }else if(howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGETWO)
         {
+            clickSound.Play();
             NextPageButton.SetActive(true);
             gameRulesHeader.text = StringCollection.GAMERULESONE;
             gameRules.text = StringCollection.GAMERULESPAGEONE;
         }
         else if (howToPlay.activeSelf && gameRules.text == StringCollection.GAMERULESPAGETHREE)
         {
+            clickSound.Play();
             NextPageButton.SetActive(true);
             gameRulesHeader.text = StringCollection.GAMERULESONE;
             gameRules.text = StringCollection.GAMERULESPAGEONE;
         }
         else if (lobby.activeSelf)
         {
+            clickSound.Play();
             lobby.SetActive(false);
             ActivateStartmenu();
         }
         else if (nameInput.activeSelf)
         {
+            clickSound.Play();
             nameInput.SetActive(false);
             ActivateStartmenu();
         }
         else if (waitingForPlayer.activeSelf)
         {
+            clickSound.Play();
             waitingForPlayer.SetActive(false);
             ActivateStartmenu();
         }
@@ -86,17 +94,19 @@ public class StartMenuManager : MonoBehaviour {
 
     private void ActivateStartmenu()
     {
-
+        clickSound.Play();
         startMenu.SetActive(true);
     }
 
     private void DectivateStartmenu()
     {
+        clickSound.Play();
         startMenu.SetActive(false);
     }
 
     public void OpenHowToPlay()
     {
+        clickSound.Play();
         DectivateStartmenu();
         NextPageButton.SetActive(true);
         howToPlay.SetActive(true);
@@ -106,10 +116,12 @@ public class StartMenuManager : MonoBehaviour {
     {
         if(gameRules.text == StringCollection.GAMERULESPAGEONE)
         {
+            clickSound.Play();
             gameRulesHeader.text = StringCollection.GAMERULESTWO;
             gameRules.text = StringCollection.GAMERULESPAGETWO;
         }else if(gameRules.text == StringCollection.GAMERULESPAGETWO)
         {
+            clickSound.Play();
             gameRulesHeader.text = StringCollection.GAMERULESTHREE;
             gameRules.text = StringCollection.GAMERULESPAGETHREE;
             NextPageButton.SetActive(false);
