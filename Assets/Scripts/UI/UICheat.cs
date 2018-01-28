@@ -8,6 +8,9 @@ public class UICheat : MonoBehaviour {
 	public List<Text> buttonTexts;
 	public List<Slider> workloadSliders;
     public GoToYourPlayer gotoPlayer;
+    public List<Button> buttonList;
+	public List<Button> fromButtonList;
+	public GameObject pickOtherUI;
 
 	// Use this for initialization
 	void Start () {
