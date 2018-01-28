@@ -28,10 +28,17 @@ public class PlayerActions : MonoBehaviour {
     public Text buttonText;
     public Slider sliderWorkload;
 	public Slider sliderBlame;
+
+	private bool isPlayer = false;
     
     private void Start()
     {
         actionDoneThisRound = false;
+
+		PhotonView photonView = GetComponent<PhotonView> ();
+		if (photonView != null) {
+			isPlayer = photonView.owner.IsLocal; 
+		}
     }
 
     public void newRound()
@@ -129,7 +136,11 @@ public class PlayerActions : MonoBehaviour {
 				if (!roundBasedGame.instance.playerMap.ContainsValue (this)) {
 					if (!roundBasedGame.instance.playerMap.ContainsKey ((Department)i) || roundBasedGame.instance.playerMap [(Department)i] == null) {
 						myDepartment = (Department)i;
-						roundBasedGame.instance.playerMap.Add (myDepartment, this);
+						if (roundBasedGame.instance.playerMap.ContainsKey ((Department)i) && roundBasedGame.instance.playerMap [(Department)i] == null) {
+							roundBasedGame.instance.playerMap[(Department)i] = this;
+						} else {
+							roundBasedGame.instance.playerMap.Add (myDepartment, this);
+						}
 					}
 				}
 			}
@@ -159,6 +170,11 @@ public class PlayerActions : MonoBehaviour {
 				if (cheat != null) {
 					buttonText = cheat.buttonTexts [(int)myDepartment];
 					sliderWorkload = cheat.workloadSliders[(int)myDepartment];
+
+					if (isPlayer) {
+						cheat.gotoPlayer.transformButton = buttonText.transform;
+						cheat.gotoPlayer.enabled = true;
+					}
 				}
 
 				if (sliderWorkload != null) {
