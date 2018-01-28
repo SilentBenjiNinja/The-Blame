@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerActions : MonoBehaviour {
 
@@ -25,7 +26,6 @@ public class PlayerActions : MonoBehaviour {
     private void Start()
     {
         actionDoneThisRound = false;
-        sliderWorkload.maxValue = maxWorkloadValue;
     }
 
     public void newRound()
@@ -111,12 +111,41 @@ public class PlayerActions : MonoBehaviour {
                     break;
                 }
             }
+
+			if (sliderWorkload == null) {
+
+				Scene benjiScene = SceneManager.GetSceneByName ("Benji_Scene");
+
+				GameObject[] roots = benjiScene.GetRootGameObjects ();
+				for (int i = 0; i < roots.Length && sliderWorkload==null; i++) {
+					Transform sliderTF = roots [i].transform.Find ("BlameMeter");
+					if (sliderTF != null && sliderTF.gameObject != null) {
+						Slider slider = sliderTF.GetComponent<Slider> ();
+						if (slider != null) {
+							sliderWorkload = slider;
+						}
+					}
+				}
+			}
+
+			if (sliderWorkload != null) {
+				sliderWorkload.maxValue = maxWorkloadValue;
+
+				UICheat cheat = sliderWorkload.GetComponent<UICheat> ();
+				buttonText = cheat.buttonTexts [(int)myDepartment];
+			}
+
 		}
 	}
 
     private void LateUpdate()
     {
-        sliderWorkload.value = thisWorkloadValue;
-        buttonText.text = myDepartment.ToString();
+		if (sliderWorkload != null) {
+			sliderWorkload.value = thisWorkloadValue / maxWorkloadValue;
+		}
+
+		if (buttonText != null) {
+			buttonText.text = myDepartment.ToString ();
+		}
     }
 }

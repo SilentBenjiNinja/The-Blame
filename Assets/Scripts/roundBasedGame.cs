@@ -22,12 +22,14 @@ public class roundBasedGame : MonoBehaviour {
 
     public Text textTimeDepleted;
     public Slider sliderUntilAutoWorkload;
+    public Text textUntilAutoWorkload;
 
     private void Awake()
     {
         sliderUntilAutoWorkload.interactable = false;
 
         sliderUntilAutoWorkload.maxValue = ROUNDTIME * ROUNDSBETWEENWORKLOADS;
+        textUntilAutoWorkload.text = (ROUNDTIME * ROUNDSBETWEENWORKLOADS).ToString();
     }
 
     private void Start()
@@ -51,9 +53,11 @@ public class roundBasedGame : MonoBehaviour {
     }
 	
 	void Update () {
-        overallTimeDepleted += Time.deltaTime;
+        
         if (hasGameStarted)
         {
+			overallTimeDepleted += Time.deltaTime;
+
             roundTimeElapsed += Time.deltaTime;
             if (roundTimeElapsed >= ROUNDTIME)
             {
@@ -89,6 +93,7 @@ public class roundBasedGame : MonoBehaviour {
     private void LateUpdate()
     {
         sliderUntilAutoWorkload.value = roundsElapsed * ROUNDTIME + roundTimeElapsed;
-        textTimeDepleted.text = overallTimeDepleted.ToString();
+        textTimeDepleted.text = (overallTimeDepleted - (overallTimeDepleted % 0.1)).ToString();
+        textUntilAutoWorkload.text = Mathf.Ceil(((ROUNDSBETWEENWORKLOADS - roundsElapsed) * ROUNDTIME) - roundTimeElapsed).ToString();
     }
 }
