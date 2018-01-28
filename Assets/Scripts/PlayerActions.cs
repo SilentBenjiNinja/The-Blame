@@ -206,30 +206,33 @@ public class PlayerActions : Photon.MonoBehaviour {
 	{
 		if (stream.isWriting)
 		{
-			stream.SendNext(thisWorkloadValue);
-			stream.SendNext((int)myDepartment);
-			stream.SendNext(blameValue);
-			stream.SendNext(hasBlameSticker);
-			Debug.Log(name + " is Sending: " + info.sender.NickName);
+			if (isPlayer) {
+				stream.SendNext (thisWorkloadValue);
+				stream.SendNext ((int)myDepartment);
+				stream.SendNext (blameValue);
+				stream.SendNext (hasBlameSticker);
+			}
 		}
 		else
 		{
-			thisWorkloadValue = (float)stream.ReceiveNext();
+			if (!isPlayer) {
+				thisWorkloadValue = (float)stream.ReceiveNext ();
 
-			Department oldDept = myDepartment;
-			myDepartment = (Department)((int)stream.ReceiveNext());
-			if (oldDept != myDepartment) {
-				roundBasedGame.instance.playerMap [oldDept] = null;
-				if (roundBasedGame.instance.playerMap.ContainsKey (myDepartment)) {
-					roundBasedGame.instance.playerMap [myDepartment] = this;
-				} else {
-					roundBasedGame.instance.playerMap.Add (myDepartment, this);
+				Department oldDept = myDepartment;
+				myDepartment = (Department)((int)stream.ReceiveNext ());
+				if (oldDept != myDepartment) {
+					roundBasedGame.instance.playerMap [oldDept] = null;
+					if (roundBasedGame.instance.playerMap.ContainsKey (myDepartment)) {
+						roundBasedGame.instance.playerMap [myDepartment] = this;
+					} else {
+						roundBasedGame.instance.playerMap.Add (myDepartment, this);
+					}
 				}
-			}
 
-			blameValue = (float)stream.ReceiveNext();
-			hasBlameSticker = (bool)stream.ReceiveNext();
-			Debug.Log(name + " has Received from: " + info.sender.NickName);
+				blameValue = (float)stream.ReceiveNext ();
+				hasBlameSticker = (bool)stream.ReceiveNext ();
+				Debug.Log (name + " has Received from: " + info.sender.NickName);
+			}
 		}
 	}
 }
