@@ -130,6 +130,9 @@ public class PlayerActions : MonoBehaviour {
 
 			if (sliderWorkload != null) {
 				sliderWorkload.maxValue = maxWorkloadValue;
+
+				UICheat cheat = sliderWorkload.GetComponent<UICheat> ();
+				buttonText = cheat.buttonTexts [(int)myDepartment];
 			}
 
 		}

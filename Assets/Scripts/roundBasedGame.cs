@@ -53,9 +53,11 @@ public class roundBasedGame : MonoBehaviour {
     }
 	
 	void Update () {
-        overallTimeDepleted += Time.deltaTime;
+        
         if (hasGameStarted)
         {
+			overallTimeDepleted += Time.deltaTime;
+
             roundTimeElapsed += Time.deltaTime;
             if (roundTimeElapsed >= ROUNDTIME)
             {
