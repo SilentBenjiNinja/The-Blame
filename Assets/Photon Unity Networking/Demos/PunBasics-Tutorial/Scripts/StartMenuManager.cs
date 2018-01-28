@@ -18,15 +18,20 @@ public class StartMenuManager : MonoBehaviour {
 
     private void Start()
     {
+        startMenu = GameObject.Find("StartMenu");
+        if(startMenu != null)
+        {
+
         waitingForPlayer = GameObject.Find("WaitingForPlayer");
         lobby = GameObject.Find("Lobby");
-        startMenu = GameObject.Find("StartMenu");
         howToPlay = GameObject.Find("HowToPlayBackground");
         nameInput = GameObject.Find("NameInput");
         howToPlay.SetActive(false);
         nameInput.SetActive(false);
         lobby.SetActive(false);
         waitingForPlayer.SetActive(false);
+        }
+
     }
 
     public void ExitGame()
