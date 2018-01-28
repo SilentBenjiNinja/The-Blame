@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44658017, g: 0.49641502, b: 0.57482153, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -602,12 +602,13 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
-  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
+  maxBlameValue: 100
   minBlameWorkout: 25
   maxBlameWorkout: 75
   blameSpeed: 0.1
+  hasBlameSticker: 0
   buttonText: {fileID: 1389577383}
   sliderWorkload: {fileID: 1193101436}
   sliderBlame: {fileID: 0}
@@ -1283,12 +1284,13 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
-  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
+  maxBlameValue: 100
   minBlameWorkout: 25
   maxBlameWorkout: 75
   blameSpeed: 0.1
+  hasBlameSticker: 0
   buttonText: {fileID: 1590279161}
   sliderWorkload: {fileID: 608025816}
   sliderBlame: {fileID: 0}
@@ -1734,12 +1736,13 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
-  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
+  maxBlameValue: 100
   minBlameWorkout: 25
   maxBlameWorkout: 75
   blameSpeed: 0.1
+  hasBlameSticker: 0
   buttonText: {fileID: 274233399}
   sliderWorkload: {fileID: 1578125310}
   sliderBlame: {fileID: 0}
@@ -1959,12 +1962,13 @@ MonoBehaviour:
   actionDoneThisRound: 0
   thisWorkloadValue: 0
   maxWorkloadValue: 100
-  maxBlameValue: 100
   WORKLOADSHIFTVALUE: 10
   myDepartment: 0
+  maxBlameValue: 100
   minBlameWorkout: 25
   maxBlameWorkout: 75
   blameSpeed: 0.1
+  hasBlameSticker: 0
   buttonText: {fileID: 671070980}
   sliderWorkload: {fileID: 1197558778}
   sliderBlame: {fileID: 0}
@@ -2661,7 +2665,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
