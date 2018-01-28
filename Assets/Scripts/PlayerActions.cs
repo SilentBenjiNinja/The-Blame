@@ -40,6 +40,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 		PhotonView photonView = GetComponent<PhotonView> ();
 		if (photonView != null) {
 			isPlayer = photonView.owner.IsLocal; 
+			name = "I am " + photonView.owner.NickName;
 		}
     }
 
@@ -209,7 +210,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			stream.SendNext((int)myDepartment);
 			stream.SendNext(blameValue);
 			stream.SendNext(hasBlameSticker);
-			Debug.Log("Sending: " + info.sender.NickName);
+			Debug.Log(name + " is Sending: " + info.sender.NickName);
 		}
 		else
 		{
@@ -217,7 +218,7 @@ public class PlayerActions : Photon.MonoBehaviour {
 			myDepartment = (Department)((int)stream.ReceiveNext());
 			blameValue = (float)stream.ReceiveNext();
 			hasBlameSticker = (bool)stream.ReceiveNext();
-			Debug.Log("Received from: " + info.sender.NickName);
+			Debug.Log(name + " has Received from: " + info.sender.NickName);
 		}
 	}
 }
